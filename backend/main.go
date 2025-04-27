@@ -1,6 +1,5 @@
 package main
 
-/*
 import (
 	"fmt"
 
@@ -14,4 +13,4 @@ func main() {
 	if err := r.Run(":8080"); err != nil {
 		panic(fmt.Errorf("error trying to start server: %v", err))
 	}
-}*/
+}
