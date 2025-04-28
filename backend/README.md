@@ -1,5 +1,7 @@
 
+# Ejecutar 
 
+Para ejecutar air se debe escribir en la terminal :  air
 
 
 
@@ -51,6 +53,11 @@
     go get -u go.uber.org/zap
 
     go get github.com/go-sql-driver/mysql
+
+    go get -u github.com/cosmtrek/air 
+    
+    ( Es una herramienta de recarga en vivo para el servidor Gin.
+      se evita tener que detener y reiniciar manualmente el servidor cada vez que realizo un cambios en el código)
 
 3. Vendorizar
     go mod vendor

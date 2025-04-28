@@ -1,0 +1,31 @@
+# .air.toml
+
+root = "."
+
+[build]
+cmd = "go build -o ./tmp/main.exe ./cmd/api/main.go"
+bin = "./tmp/main.exe"
+full_bin = "./tmp/main.exe"
+
+
+# Configura la carpeta que quieres que Air observe para detectar cambios
+include_ext = ["go", "mod", "sum"]
+include = [
+  "cmd",
+  "internal",
+  "go.mod",
+  "go.sum"
+]
+
+# Opcional: Excluir carpetas de la observación
+exclude = [
+  "tmp"
+]
+
+# Configuración para reiniciar el servidor al detectar cambios
+[log]
+time = true
+color = true
+
+[misc]
+clean_on_exit = true
