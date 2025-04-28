@@ -1,16 +1,33 @@
 package main
 
 import (
-	"fmt"
+	"backend/cmd/api/routes"
+	"backend/internal/config/database"
+	"log"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	r := gin.Default()
-	//api.InitRoutes(r)
+	// Inicializar la conexión a la base de datos
+	database.Connect()
+	defer database.DB.Close()
 
-	if err := r.Run(":8080"); err != nil {
-		panic(fmt.Errorf("error trying to start server: %v", err))
+	// Ejecutar migraciones
+	database.Migrate()
+
+	// Configurar el router de Gin
+	router := gin.Default()
+
+	// Configurar rutas
+	routes.SetupUserRoutes(database.DB, router)
+
+	// Configuración del servidor
+	port := ":8080"
+	log.Printf("Servidor iniciado en http://localhost%s", port)
+
+	// Iniciar el servidor
+	if err := router.Run(port); err != nil {
+		log.Fatalf("Error al iniciar el servidor: %v", err)
 	}
 }
