@@ -4,7 +4,7 @@ import "time"
 
 // User represents a system user with metadata for auditing and versioning.
 type User struct {
-	ID        string    `json:"id"`
+	ID        int       `json:"id"`
 	Name      string    `json:"name"`
 	Address   string    `json:"address"`
 	NickName  string    `json:"nickname"`

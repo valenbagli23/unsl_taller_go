@@ -20,6 +20,12 @@ func Migrate() {
 		log.Fatal("Error seleccionando la base de datos:", err)
 	}
 
+	//-----------------
+	if _, err := DB.Exec("DROP TABLE IF EXISTS users"); err != nil {
+		log.Fatal("No se puede borrar la tabla", err)
+	}
+
+	//---------------------
 	// Ahora creamos las tablas
 	query := queryUser()
 	_, err = DB.Exec(query)
@@ -33,7 +39,7 @@ func Migrate() {
 func queryUser() string {
 	return `
 	CREATE TABLE IF NOT EXISTS users (
-		id CHAR(36) PRIMARY KEY,
+		id INT AUTO_INCREMENT  PRIMARY KEY,
 		name VARCHAR(100) NOT NULL,
 		address VARCHAR(255) NOT NULL,
 		nickname VARCHAR(100),

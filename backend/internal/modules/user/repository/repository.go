@@ -2,6 +2,7 @@ package repository
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 
 	"backend/internal/modules/user/domain"
@@ -22,6 +23,7 @@ func (r *UserRepository) Create(user *domain.User) error {
 	query := `INSERT INTO users (id, name, address, nickname, created_at, updated_at, version) 
 			  VALUES (?, ?, ?, ?, ?, ?, ?)`
 
+	fmt.Print("datos de user: ", user)
 	_, err := r.DB.Exec(query, user.ID, user.Name, user.Address, user.NickName, user.CreatedAt, user.UpdatedAt, user.Version)
 	if err != nil {
 		log.Println("Error al crear el usuario:", err)
